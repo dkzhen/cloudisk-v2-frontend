@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Progress } from "@nextui-org/react";
+import { Progress, Switch } from "@nextui-org/react";
 import UploadButton from "@/components/button/appUploadButton";
 
 function CardUpload() {
@@ -29,7 +29,7 @@ function CardUpload() {
         clearInterval(intervalId);
       }
     }
-    
+
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
@@ -76,6 +76,10 @@ function CardUpload() {
             />
           </div>
         )}
+      </div>
+      <div className="mt-4 flex gap-4">
+        <Switch defaultSelected size="sm">Private</Switch>
+        <Switch defaultSelected size="sm">Limit Upload 50MB</Switch>
       </div>
     </div>
   );
