@@ -3,12 +3,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 function DropdownStorage({ data }) {
-  // State to manage dropdown visibility
   const [isOpen, setIsOpen] = useState(false);
-  // State to manage selected item
   const [selectedItem, setSelectedItem] = useState(null);
-
-  // Set default selected item to the first item in the data
   React.useEffect(() => {
     if (data.length > 0) {
       setSelectedItem(data[0]);

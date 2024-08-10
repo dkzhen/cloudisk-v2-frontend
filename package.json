@@ -19,14 +19,20 @@
     "@react-aria/ssr": "3.9.4",
     "@react-aria/visually-hidden": "3.8.12",
     "@react-stately/data": "^3.11.6",
+    "axios": "^1.7.3",
+    "bcrypt": "^5.1.1",
     "clsx": "2.1.1",
+    "firebase": "^10.12.5",
+    "firebase-admin": "^12.3.1",
     "framer-motion": "~11.1.1",
     "intl-messageformat": "^10.5.0",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.2.4",
     "next-themes": "^0.2.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "swr": "^2.2.5"
+    "react-toastify": "^10.0.5",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/react-dom": "18.3.0",
