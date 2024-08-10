@@ -6,7 +6,7 @@ import Divider from "@mui/material/Divider";
 
 import { Button, Card, Input, Navbar, NavbarBrand } from "@nextui-org/react";
 import { Container } from "@mui/material";
-import useDrawerStore from "@/zustand/store";
+import { useDrawerStore } from "@/zustand/store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { register } from "@/app/api/repository/userRepo";
