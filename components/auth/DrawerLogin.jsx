@@ -8,6 +8,7 @@ import { Container } from "@mui/material";
 import { useDrawerStore, useAuthStore } from "@/zustand/store";
 import { login } from "@/app/api/repository/userRepo";
 import { toast } from "react-toastify";
+import AppLoadingGradient from "../loading/appLoadingGradient";
 
 export default function DrawerLogin() {
   // Access the Zustand store state and functions
@@ -15,6 +16,8 @@ export default function DrawerLogin() {
   const toggleDrawer = useDrawerStore((state) => state.toggleDrawer);
   const register = useDrawerStore((state) => state.register);
   const setAuthToken = useAuthStore((state) => state.setAuthToken);
+
+  const [loading, setLoading] = React.useState(false);
 
   // access firestore
   const [formData, setFormData] = React.useState({
@@ -40,6 +43,7 @@ export default function DrawerLogin() {
   };
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
 
     const { email, password } = formData;
@@ -52,7 +56,7 @@ export default function DrawerLogin() {
       });
       return;
     }
-    console.log(formData);
+
     loginAccount().then((response) => {
       if (response.status === "OK") {
         toast.success("Login successful", {
@@ -66,6 +70,7 @@ export default function DrawerLogin() {
         setTimeout(() => {
           toggleDrawer(false);
         }, 1000);
+        setLoading(false);
       } else {
         toast.error(`${response.data}`, {
           position: "top-right",
@@ -123,8 +128,9 @@ export default function DrawerLogin() {
             onChange={handleChange}
             required
           />
+
           <Button onClick={handleSubmit} className="mx-3" color="primary">
-            Login
+            {loading ? <AppLoadingGradient /> : "Login"}
           </Button>
           <span
             onClick={register}

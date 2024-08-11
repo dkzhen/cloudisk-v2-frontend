@@ -10,10 +10,13 @@ import Tooltip from "@mui/material/Tooltip";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Diamond } from "@mui/icons-material";
+import { useAuthStore } from "@/zustand/store";
+import { toast } from "react-toastify";
 
 export default function AppDropdownProfile() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const setAuthToken = useAuthStore((state) => state.setAuthToken);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -22,7 +25,13 @@ export default function AppDropdownProfile() {
   };
   return (
     <React.Fragment>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          textAlign: "center",
+        }}
+      >
         <Tooltip title="Account">
           <IconButton
             onClick={handleClick}
@@ -57,7 +66,7 @@ export default function AppDropdownProfile() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem className="gap-2" onClick={handleClose}>
+        <MenuItem className="gap-2 md:pr-14" onClick={handleClose}>
           <Avatar /> My account
         </MenuItem>
         <Divider />
@@ -73,7 +82,17 @@ export default function AppDropdownProfile() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={() => {
+            handleClick;
+            localStorage.removeItem("auth");
+            setAuthToken(null);
+            toast.success("Logout successful", {
+              position: "top-right",
+              className: "text-base",
+            });
+          }}
+        >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
